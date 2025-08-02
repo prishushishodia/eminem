@@ -1,18 +1,25 @@
-import { useState } from "react";
+import { useState, Suspense, lazy } from "react";
 import { useNavigate } from "react-router-dom";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css"; // Import Quill CSS
-import { db, collection, addDoc } from "../../firebase"; // Import necessary Firestore functions
-import { Timestamp } from "firebase/firestore"; // Correct import for Timestamp
+
+// Correct imports for the core Quill library's CSS and JS files
+import "quill/dist/quill.snow.css";
+import "quill/dist/quill.js";
+
+import { db, collection, addDoc } from "../../firebase";
+import { Timestamp } from "firebase/firestore";
+
+// Use React.lazy to dynamically import ReactQuill
+// This ensures it loads after the core Quill library is available
+const ReactQuill = lazy(() => import("react-quill"));
 
 const AddBlog = () => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
   const [secondTitle, setSecondTitle] = useState("");
-  const [date, setDate] = useState(new Date().toISOString().split("T")[0]); // Default to today
+  const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
   const [author, setAuthor] = useState("");
-  const [imageUrl, setImageUrl] = useState(""); // Changed readTime to imageUrl
+  const [imageUrl, setImageUrl] = useState("");
   const [content, setContent] = useState("");
 
   const handleAddBlog = async (e) => {
@@ -21,26 +28,25 @@ const AddBlog = () => {
     const newBlog = {
       title,
       secondTitle,
-      date: Timestamp.fromDate(new Date(date)), // Convert to Firestore Timestamp
+      date: Timestamp.fromDate(new Date(date)),
       author,
-      imageUrl, // Added imageUrl field
+      imageUrl,
       content,
     };
 
     try {
-      // Add new blog to Firestore collection
-      const blogCollectionRef = collection(db, "blogs"); // Reference to 'blogs' collection
-      const docRef = await addDoc(blogCollectionRef, newBlog); // Add document to Firestore
+      const blogCollectionRef = collection(db, "blogs");
+      const docRef = await addDoc(blogCollectionRef, newBlog);
 
       if (docRef.id) {
         alert("Blog added successfully!");
         setTitle("");
         setSecondTitle("");
-        setDate(new Date().toISOString().split("T")[0]); // Reset to today
+        setDate(new Date().toISOString().split("T")[0]);
         setAuthor("");
-        setImageUrl(""); // Reset image URL
+        setImageUrl("");
         setContent("");
-        navigate("/"); // Navigate to home after success
+        navigate("/");
       }
     } catch (error) {
       console.error("Error adding blog:", error);
@@ -125,14 +131,17 @@ const AddBlog = () => {
             <label htmlFor="content" className="block text-lg font-medium text-gray-300">
               Blog Content
             </label>
-            <ReactQuill
-              theme="snow"
-              value={content}
-              onChange={setContent}
-              className="bg-gray-800 mb-9 text-gray-300 rounded-lg"
-              placeholder="Write your blog here..."
-              style={{ height: "1000px" }} // Adjust the height here
-            />
+            {/* Using Suspense to handle the loading of the ReactQuill component */}
+            <Suspense fallback={<div>Loading editor...</div>}>
+              <ReactQuill
+                theme="snow"
+                value={content}
+                onChange={setContent}
+                className="bg-gray-800 mb-9 text-gray-300 rounded-lg"
+                placeholder="Write your blog here..."
+                style={{ height: "1000px" }}
+              />
+            </Suspense>
           </div>
           <button
             type="submit"

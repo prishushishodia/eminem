@@ -8,7 +8,7 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import bgVid from "/bgVid.mp4";
 import ThirdSection from "./ThirdSection";
 import { ArrowRight } from "lucide-react";
-
+import SmoothScroll from "../components/SmoothScroll.jsx";
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
 const HeroSection = () => {
@@ -148,6 +148,7 @@ const HeroSection = () => {
   };
 
   return (
+    <SmoothScroll>
     <>
       <div
         ref={containerRef}
@@ -225,6 +226,7 @@ const HeroSection = () => {
         <ThirdSection />
       </div>
     </>
+</SmoothScroll>
   );
 };
 

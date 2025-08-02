@@ -1,35 +1,42 @@
+@import url("https://db.onlinewebfonts.com/c/a8d7b985e4eb8c5d34f2302ffe83e917?family=Nike+Futura+ND");
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @font-face {
-    font-family: 'Helix';
-    src: url('./assets/fonts/Hellix-SemiBold.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'Neue';
-    src: url('./assets/fonts/NeueHaasGroteskDisplay-Reg.woff2') format('woff2'),
-    url('./assets/fonts/NeueHaasGroteskDisplay-Medium.woff2') format('woff2'),
-    url('./assets/fonts/NeueHaasGroteskDisplay-Bold.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-  }
-/*   
-  body {
-    font-family: 'Helix', sans-serif;
-  } */
+  font-family: 'Helix';
+  src: url('./assets/fonts/Hellix-SemiBold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
 
-  .scrollbar-hide {
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-  }
-  
-  /* Webkit browsers (Chrome, Safari, Edge) */
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
+@font-face {
+  font-family: 'Neue';
+  src: url('./assets/fonts/NeueHaasGroteskDisplay-Reg.woff2') format('woff2'),
+       url('./assets/fonts/NeueHaasGroteskDisplay-Medium.woff2') format('woff2'),
+       url('./assets/fonts/NeueHaasGroteskDisplay-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Optional: Set default font-family globally */
+/*
+body {
+  font-family: 'Helix', sans-serif;
+}
+*/
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none;     /* Firefox */
+}
+
+/* Webkit browsers (Chrome, Safari, Edge) */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 
 /* Remove autofill background */
 input:-webkit-autofill,
@@ -41,18 +48,19 @@ input:-webkit-autofill:active {
   caret-color: white !important;
 }
 
+/* Styling for select dropdowns */
 select option {
   background-color: #0b1121 !important;
   color: white !important;
 }
 
-/* For Firefox */
+/* Firefox scrollbar */
 select {
   scrollbar-width: thin;
   scrollbar-color: #0b1121 transparent;
 }
 
-/* For Webkit browsers */
+/* Webkit scrollbar */
 select::-webkit-scrollbar {
   width: 6px;
 }
@@ -65,4 +73,3 @@ select::-webkit-scrollbar-thumb {
   background-color: #0b1121;
   border-radius: 3px;
 }
-
