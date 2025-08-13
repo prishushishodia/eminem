@@ -6,14 +6,17 @@ export default {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        serif: ['Merriweather', 'serif'],
-        nike: ['Nike Futura ND', 'sans-serif'],
-        Helix: ['Helix', 'sans-serif'], // Define your custom font
-        Neue: ['Neue', 'sans-serif'],
-         Montserrat: ['Montserrat', 'sans-serif'],
-      },
+     fontFamily: {
+  sans: ['Inter', 'sans-serif'],
+  serif: ['Merriweather', 'serif'],
+  nike: ['Nike Futura ND', 'sans-serif'],
+  Helix: ['Helix', 'sans-serif'],
+  Neue: ['Neue', 'sans-serif'],
+  Montserrat: ['Montserrat', 'sans-serif'],
+  Nunito: ['"Nunito Sans"', 'sans-serif'],
+  Great : ["Great Vibes", 'cursive']
+},
+
     },
   },
   plugins: [],
